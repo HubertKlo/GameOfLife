@@ -1,12 +1,11 @@
 #include <SDL.h>
-#include <cstdlib>
-#include <ctime>
+#include <random>
 #include <array>
 
 #define size_x 300
 #define size_y 200
 
-bool copy(std::array<std::array<int,size_y>,size_x> orgin, std::array<std::array<bool,size_y>,size_x> dest, int x, int y)
+bool copy(std::array<std::array<bool,size_y>,size_x> orgin, std::array<std::array<bool,size_y>,size_x> dest, int x, int y)
 {
     for (int i = 0; i < x; i++)
     {
@@ -17,7 +16,7 @@ bool copy(std::array<std::array<int,size_y>,size_x> orgin, std::array<std::array
     }
     return 1;
 }
-int num_of_neigh(std::array<std::array<int,size_y>,size_x> cells, int i, int j, int max_x, int max_y)
+int num_of_neigh(std::array<std::array<bool,size_y>,size_x> cells, int i, int j, int max_x, int max_y)
 {
     int ans = 0;
     if ((i == 0 && j == 0))
@@ -91,9 +90,11 @@ int num_of_neigh(std::array<std::array<int,size_y>,size_x> cells, int i, int j, 
 }
 int main()
 {
-    std::srand(std::time(0));
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::bernoulli_distribution alive(0.2);
     int x, y;
-    using Grid = std::array<std::array<int,size_y>,size_x>;
+    using Grid = std::array<std::array<bool,size_y>,size_x>;
     Grid cells{};
     Grid newcells{};
     int window_size_x = 1200, window_size_y = 800;
@@ -121,7 +122,7 @@ int main()
     // BUILD RANDOM CEELS
     for (int i = 0; i < window_size_y / grid_height; i++){
                     for (int j = 0; j < window_size_x / grid_width; j++){
-                        cells[j][i] = std::rand()%2;
+                        cells[j][i] = alive(gen);
                         // SDL_Log("%i",cells[j][i]);
                         if(cells[j][i]==1){
                             SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
