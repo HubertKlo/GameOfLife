@@ -1,11 +1,12 @@
 #include <SDL.h>
 #include <cstdlib>
 #include <ctime>
+#include <array>
 
 #define size_x 300
 #define size_y 200
 
-bool copy(int orgin[size_x][size_y], int dest[size_x][size_y], int x, int y)
+bool copy(std::array<std::array<int,size_y>,size_x> orgin, std::array<std::array<bool,size_y>,size_x> dest, int x, int y)
 {
     for (int i = 0; i < x; i++)
     {
@@ -16,10 +17,9 @@ bool copy(int orgin[size_x][size_y], int dest[size_x][size_y], int x, int y)
     }
     return 1;
 }
-int num_of_neigh(int cells[size_x][size_y], int i, int j, int max_x, int max_y)
+int num_of_neigh(std::array<std::array<int,size_y>,size_x> cells, int i, int j, int max_x, int max_y)
 {
     int ans = 0;
-    // SDL_Log("%d , %d , %d , %d", j, i, max_x, max_y);
     if ((i == 0 && j == 0))
     {
         ans += cells[j + 1][i];
@@ -93,8 +93,9 @@ int main()
 {
     std::srand(std::time(0));
     int x, y;
-    int cells[size_x][size_y] = {};
-    int newcells[size_x][size_y] = {};
+    using Grid = std::array<std::array<int,size_y>,size_x>;
+    Grid cells{};
+    Grid newcells{};
     int window_size_x = 1200, window_size_y = 800;
     int grid_width = 4, grid_height = 4;
     SDL_Window *window = nullptr;
@@ -218,7 +219,8 @@ int main()
                     SDL_RenderFillRect(renderer, &grid_cell);
                 }
             }
-            copy(newcells, cells, size_x, size_y);
+            std::swap(cells,newcells);
+            // copy(newcells, cells, size_x, size_y);
         }
         SDL_RenderPresent(renderer);
     }
