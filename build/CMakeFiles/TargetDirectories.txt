@@ -1,3 +1,3 @@
-C:/Users/huber/Desktop/du bist gut genug/build/CMakeFiles/MySDLProject.dir
-C:/Users/huber/Desktop/du bist gut genug/build/CMakeFiles/edit_cache.dir
-C:/Users/huber/Desktop/du bist gut genug/build/CMakeFiles/rebuild_cache.dir
+C:/Users/huber/Documents/GitHub/GameOfLife/build/CMakeFiles/MySDLProject.dir
+C:/Users/huber/Documents/GitHub/GameOfLife/build/CMakeFiles/edit_cache.dir
+C:/Users/huber/Documents/GitHub/GameOfLife/build/CMakeFiles/rebuild_cache.dir

@@ -2,8 +2,8 @@
 #include <cstdlib>
 #include <ctime>
 
-#define size_x 30
-#define size_y 20
+#define size_x 300
+#define size_y 200
 
 bool copy(int orgin[size_x][size_y], int dest[size_x][size_y], int x, int y)
 {
@@ -96,7 +96,7 @@ int main()
     int cells[size_x][size_y] = {};
     int newcells[size_x][size_y] = {};
     int window_size_x = 1200, window_size_y = 800;
-    int grid_width = 40, grid_height = 40;
+    int grid_width = 4, grid_height = 4;
     SDL_Window *window = nullptr;
     SDL_Renderer *renderer = nullptr;
     SDL_Event event;
@@ -118,20 +118,20 @@ int main()
     }
 
     // BUILD RANDOM CEELS
-    // for (int i = 0; i < window_size_y / grid_height; i++){
-    //                 for (int j = 0; j < window_size_x / grid_width; j++){
-    //                     cells[j][i] = std::rand()%2;
-    //                     // SDL_Log("%i",cells[j][i]);
-    //                     if(cells[j][i]==1){
-    //                         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    //                     }else{
-    //                         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    //                     }
-    //                     grid_cell.x = grid_width * (j);
-    //                     grid_cell.y = grid_height * (i);
-    //                     SDL_RenderFillRect(renderer, &grid_cell);
-    //                 }
-    // }
+    for (int i = 0; i < window_size_y / grid_height; i++){
+                    for (int j = 0; j < window_size_x / grid_width; j++){
+                        cells[j][i] = std::rand()%2;
+                        // SDL_Log("%i",cells[j][i]);
+                        if(cells[j][i]==1){
+                            SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+                        }else{
+                            SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+                        }
+                        grid_cell.x = grid_width * (j);
+                        grid_cell.y = grid_height * (i);
+                        SDL_RenderFillRect(renderer, &grid_cell);
+                    }
+    }
 
     while (RUN)
     {
@@ -185,8 +185,7 @@ int main()
             for (int i = 0; i < window_size_y / grid_height; i++)
             {
                 for (int j = 0; j < window_size_x / grid_width; j++)
-                {
-                    // SDL_Log("%d,%d", j, i);
+                {  
                     int neigh = num_of_neigh(cells, i, j, (window_size_x / grid_height) - 1, (window_size_y / grid_height) - 1);
                     if (cells[j][i] == 0)
                     {
@@ -219,8 +218,7 @@ int main()
                     SDL_RenderFillRect(renderer, &grid_cell);
                 }
             }
-            copy(newcells, cells, 30, 20);
-            SDL_Delay(1000);
+            copy(newcells, cells, size_x, size_y);
         }
         SDL_RenderPresent(renderer);
     }

@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = C:\MinGW\bin\cmake.exe --regenerate-during-build -S"C:\Users\huber\Desktop\du bist gut genug" -B"C:\Users\huber\Desktop\du bist gut genug\build"
+  command = C:\MinGW\bin\cmake.exe --regenerate-during-build -SC:\Users\huber\Documents\GitHub\GameOfLife -BC:\Users\huber\Documents\GitHub\GameOfLife\build
   description = Re-running CMake...
   generator = 1
 
