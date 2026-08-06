@@ -1,0 +1,23 @@
+cmake_minimum_required(VERSION 3.20)
+
+project(MySDLProject LANGUAGES CXX)
+
+set(SDL2_DIR "${CMAKE_CURRENT_SOURCE_DIR}/SDL2-2.32.2/x86_64-w64-mingw32/lib/cmake/SDL2")
+
+find_package(SDL2 REQUIRED)
+
+add_executable(MySDLProject
+    src/main.cpp
+)
+
+target_link_libraries(MySDLProject PRIVATE SDL2::SDL2)
+
+target_link_options(MySDLProject PRIVATE -mconsole)
+
+target_compile_definitions(MySDLProject PRIVATE SDL_MAIN_HANDLED)
+
+add_custom_command(TARGET MySDLProject POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    "${CMAKE_CURRENT_SOURCE_DIR}/SDL2-2.32.2/x86_64-w64-mingw32/bin/SDL2.dll"
+    "$<TARGET_FILE_DIR:MySDLProject>"
+)
