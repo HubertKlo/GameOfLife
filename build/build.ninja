@@ -47,7 +47,25 @@ build cmake_object_order_depends_target_MySDLProject: phony || .
 build CMakeFiles/MySDLProject.dir/src/main.cpp.obj: CXX_COMPILER__MySDLProject_unscanned_ C$:/Users/huber/Documents/GitHub/GameOfLife/src/main.cpp || cmake_object_order_depends_target_MySDLProject
   DEFINES = -DSDL_MAIN_HANDLED
   DEP_FILE = CMakeFiles\MySDLProject.dir\src\main.cpp.obj.d
-  INCLUDES = -isystem C:/Users/huber/Documents/GitHub/GameOfLife/SDL2-2.32.2/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -IC:/Users/huber/Documents/GitHub/GameOfLife/inc -isystem C:/Users/huber/Documents/GitHub/GameOfLife/SDL2-2.32.2/x86_64-w64-mingw32/include/SDL2
+  OBJECT_DIR = CMakeFiles\MySDLProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\MySDLProject.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\MySDLProject.dir\
+  TARGET_PDB = MySDLProject.pdb
+
+build CMakeFiles/MySDLProject.dir/src/gameoflife.cpp.obj: CXX_COMPILER__MySDLProject_unscanned_ C$:/Users/huber/Documents/GitHub/GameOfLife/src/gameoflife.cpp || cmake_object_order_depends_target_MySDLProject
+  DEFINES = -DSDL_MAIN_HANDLED
+  DEP_FILE = CMakeFiles\MySDLProject.dir\src\gameoflife.cpp.obj.d
+  INCLUDES = -IC:/Users/huber/Documents/GitHub/GameOfLife/inc -isystem C:/Users/huber/Documents/GitHub/GameOfLife/SDL2-2.32.2/x86_64-w64-mingw32/include/SDL2
+  OBJECT_DIR = CMakeFiles\MySDLProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\MySDLProject.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\MySDLProject.dir\
+  TARGET_PDB = MySDLProject.pdb
+
+build CMakeFiles/MySDLProject.dir/src/rendering.cpp.obj: CXX_COMPILER__MySDLProject_unscanned_ C$:/Users/huber/Documents/GitHub/GameOfLife/src/rendering.cpp || cmake_object_order_depends_target_MySDLProject
+  DEFINES = -DSDL_MAIN_HANDLED
+  DEP_FILE = CMakeFiles\MySDLProject.dir\src\rendering.cpp.obj.d
+  INCLUDES = -IC:/Users/huber/Documents/GitHub/GameOfLife/inc -isystem C:/Users/huber/Documents/GitHub/GameOfLife/SDL2-2.32.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\MySDLProject.dir
   OBJECT_FILE_DIR = CMakeFiles\MySDLProject.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\MySDLProject.dir\
@@ -61,7 +79,7 @@ build CMakeFiles/MySDLProject.dir/src/main.cpp.obj: CXX_COMPILER__MySDLProject_u
 #############################################
 # Link the executable MySDLProject.exe
 
-build MySDLProject.exe: CXX_EXECUTABLE_LINKER__MySDLProject_ CMakeFiles/MySDLProject.dir/src/main.cpp.obj | C$:/Users/huber/Documents/GitHub/GameOfLife/SDL2-2.32.2/x86_64-w64-mingw32/lib/libSDL2.dll.a
+build MySDLProject.exe: CXX_EXECUTABLE_LINKER__MySDLProject_ CMakeFiles/MySDLProject.dir/src/main.cpp.obj CMakeFiles/MySDLProject.dir/src/gameoflife.cpp.obj CMakeFiles/MySDLProject.dir/src/rendering.cpp.obj | C$:/Users/huber/Documents/GitHub/GameOfLife/SDL2-2.32.2/x86_64-w64-mingw32/lib/libSDL2.dll.a
   LINK_FLAGS = -mconsole
   LINK_LIBRARIES = C:/Users/huber/Documents/GitHub/GameOfLife/SDL2-2.32.2/x86_64-w64-mingw32/lib/libSDL2.dll.a  -mwindows  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   LINK_PATH = -LC:/Users/huber/Documents/GitHub/GameOfLife/SDL2-2.32.2/x86_64-w64-mingw32/lib
