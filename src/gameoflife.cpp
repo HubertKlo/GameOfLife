@@ -1,75 +1,19 @@
 #include "..\include\Gameoflife.h"
+#include <random>
 int GameOfLife::num_of_neigh(int x,int y) const {
     int ans = 0;
     int max_y = cells[0].size();
-    int max_x = cells[0].size();
-    if ((y == 0 && x == 0))
-    {
-        ans += cells[x + 1][y];
-        ans += cells[x + 1][y + 1];
-        ans += cells[x][y + 1];
-    }
-    else if ((y == max_y && x == max_x))
-    {
-        ans += cells[x - 1][y];
-        ans += cells[x - 1][y - 1];
-        ans += cells[x][y - 1];
-    }
-    else if (y == 0 && x == max_x)
-    {
-        ans += cells[x - 1][y];
-        ans += cells[x - 1][y + 1];
-        ans += cells[x][y + 1];
-    }
-    else if (y == max_y && x == 0)
-    {
-        ans += cells[x + 1][y - 1];
-        ans += cells[x][y - 1];
-        ans += cells[x + 1][y];
-    }
-    else if (y == 0)
-    {
-        ans += cells[x - 1][y];
-        ans += cells[x + 1][y];
-        ans += cells[x + 1][y + 1];
-        ans += cells[x][y + 1];
-        ans += cells[x - 1][y + 1];
-    }
-    else if (y == max_y)
-    {
-        ans += cells[x - 1][y];
-        ans += cells[x + 1][y];
-        ans += cells[x + 1][y - 1];
-        ans += cells[x][y - 1];
-        ans += cells[x - 1][y - 1];
-    }
-    else if (x == 0)
-    {
-        ans += cells[x][y + 1];
-        ans += cells[x][y - 1];
-        ans += cells[x + 1][y + 1];
-        ans += cells[x + 1][y - 1];
-        ans += cells[x + 1][y];
-    }
-    else if (x == max_x)
-    {
-        ans += cells[x][y - 1];
-        ans += cells[x][y + 1];
-        ans += cells[x - 1][y];
-        ans += cells[x - 1][y + 1];
-        ans += cells[x - 1][y - 1];
-    }
-    else
-    {
-        ans += cells[x][y - 1];
-        ans += cells[x][y + 1];
-        ans += cells[x - 1][y];
-        ans += cells[x - 1][y + 1];
-        ans += cells[x - 1][y - 1];
-        ans += cells[x + 1][y + 1];
-        ans += cells[x + 1][y - 1];
-        ans += cells[x + 1][y];
-    }
+    int max_x = cells.size();
+
+            for(int k=-1;k<=1;k++){
+                for(int p=-1;p<=1;p++){
+                    if(k+x<0||k+x>=max_x)continue;
+                    if(k+y<0||k+y>=max_y)continue;
+                    if(k==0&&p==0)continue; 
+                    if(cells[x+k][y+p])ans++;
+                }
+            }   
+
     return ans;
 }
 void GameOfLife::generate_cells()
@@ -94,7 +38,9 @@ void GameOfLife::update()
             {
                 for (int j = 0; j < size_y; j++)
                 {  
+                
                     int neigh = num_of_neigh(i, j);
+                   // printf("%i \n",neigh);
                     if (cells[i][j] == 0)
                     {
                         if (neigh == 3)

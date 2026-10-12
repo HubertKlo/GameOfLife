@@ -11,22 +11,18 @@ void Rendering::create_window()
 
 void Rendering::update_grid()
 {
+     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+     SDL_RenderClear(renderer);
+     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
      for (std::size_t i = 0; i < game->size_x; i++)
             {
                 for (std::size_t j = 0; j < game->size_y; j++)
                 {
+                    if (game->getCells()[i][j] == 1){
                     grid_cell.x = i * grid_cell.w;
                     grid_cell.y = j * grid_cell.h;
-                    if (game->getCells()[i][j] == 0)
-                    {
-                        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+                    SDL_RenderFillRect(renderer,&grid_cell);
                     }
-                    else
-                    {
-                        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-                    }
-                    SDL_RenderDrawRect(renderer, &grid_cell);
-                    // SDL_RenderFillRect(renderer,&grid_cell);   
                 }
             }
 }
@@ -41,13 +37,6 @@ void Rendering::event_handle()
             {
             case SDL_QUIT:
                 RUN = false;
-                break;
-            case SDL_MOUSEBUTTONDOWN:
-                // SETTING STATE OF CELLS
-                if (!Game_running)
-                {
-                }
-                //
                 break;
             case SDL_KEYDOWN:
                 // TURNING OFF AND ON SIMULATION
@@ -67,9 +56,11 @@ void Rendering::event_handle()
             }
              }
             if (Game_running){
+
             game->update();
             update_grid();
             }
+
          SDL_RenderPresent(renderer);
         }
    

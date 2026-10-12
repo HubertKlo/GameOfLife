@@ -4,8 +4,8 @@
 
 class Rendering{
     private:
-     static constexpr int window_size_x = 1200;
-     static constexpr int window_size_y = 800;
+     static constexpr int window_size_x = 800;
+     static constexpr int window_size_y = 400;
      static constexpr int grid_width = 4;
      static constexpr int grid_height = 4;
      GameOfLife *game;   
